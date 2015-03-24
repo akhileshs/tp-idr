@@ -24,8 +24,11 @@ dindex (DFS k) (x :: xs) = dindex k xs
   a, n are implicit in this case
 -}
 
+mutual                -- allows data types and functions to be simultaneously defined
+  even : Nat -> Bool
+  even Z = True
+  even (S k) = odd k
 
-
-
-
-
+  odd : Nat -> Bool
+  odd Z = False
+  odd (S k) = even k
