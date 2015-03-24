@@ -33,3 +33,23 @@ lst_lookup : Nat -> List a -> Maybe a
 lst_lookup _  Nil       = Nothing
 lst_lookup Z (x :: xs)  = Just x
 lst_lookup (S k) (x :: xs) = lst_lookup k xs
+
+-- dependent pairs
+data Sigma : (A : Type) -> (P : A -> Type) -> Type where
+  MkSigma : {P : A -> Type} -> (a : A) -> P a -> Sigma A P
+ 
+-- type of the second element depends of first element's value
+
+-- onwards to list comprehensions
+pyth : Int -> List (Int, Int, Int)
+pyth n = [ (x, y, z) | z <- [1..n], y <- [1..z], x <- [1..y],
+                       x*x + y*y == z*z ]
+
+-- dependent records
+record Person : Type where
+  MkPerson : (name : String) ->
+             (age : Int) -> Person
+
+akhilesh : Person
+akhilesh = MkPerson "Akhilesh" 21
+
